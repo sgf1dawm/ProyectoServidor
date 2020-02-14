@@ -1,0 +1,100 @@
+﻿@model orocoche_v2.Models.Clientes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Clientes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DNI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DNI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+    </dl>
+</div>
+@* Se añade código para presentar los avisos del equipo seleccionado *@
+<div>
+    <h4>Reservas del cliente</h4>
+    <table class="table">
+        <tr>
+            <td>Fecha Inicio</td>
+            <td>Fecha Fin</td>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Matrícula</td>
+            <td>Direccion Sede</td>
+        </tr>
+        @foreach (var item in Model.Reservas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelos.Marca1.NombreMarca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelos.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Coches.Matricula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sedes.Direccion)
+                </td>
+                @*<td>
+                        <p>
+                            @Html.ActionLink("Editar", "Edit", new { id = Model.IdCliente }) |
+                            @Html.ActionLink("Back to List", "Index")
+                        </p>
+                        @Html.DisplayFor(modelItem => item.TipoAveria.Descripcion)
+                    </td>
+                    <td>
+                        <div class="hidden-print">
+                            @Html.ActionLink("Editar", "Edit", "Avisos", new { id = item.Id }, null) |
+                            @Html.ActionLink("Borrar", "Delete", "Avisos", new { id = item.Id }, null)
+                        </div>
+                    </td>*@
+            </tr>
+        }
+    </table>
+</div>
+@* Se añade para poder imprimir la página *@
+@*<div class="hidden-print text-center">
+        <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
+    </div>*@

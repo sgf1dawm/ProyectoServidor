@@ -1,0 +1,99 @@
+﻿@model orocoche_v2.Models.Clientes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservas del cliente</h4>
+    <table class="table">
+        <tr>
+            <td>Fecha Inicio</td>
+            <td>Fecha Fin</td>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Direccion Sede</td>
+        </tr>
+        @foreach (var item in Model.Reservas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelos.Marca1.NombreMarca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelos.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sedes.Direccion)
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    @*<h4>Reservas</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FechaInicio)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FechaInicio)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FechaFin)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FechaFin)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Clientes.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Clientes.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Coches.Matricula)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Coches.Matricula)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Modelos.Modelo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Modelos.Modelo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sedes.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sedes.Nombre)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.IdReserva }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@

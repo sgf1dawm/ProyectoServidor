@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OroCocheModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DNI" Type="nvarchar" MaxLength="50" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="IdCliente" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="idMarca" />
+    </Key>
+    <Property Name="idMarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreMarca" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Modelos">
+    <Key>
+      <PropertyRef Name="IdModelos" />
+    </Key>
+    <Property Name="IdModelos" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marca" Type="int" Nullable="false" />
+    <Property Name="Modelo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Potencia" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Peso" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Año" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="StockTotal" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Tipo" Type="int" Nullable="false" />
+    <Property Name="Motor" Type="int" Nullable="false" />
+    <Property Name="Premium" Type="bit" />
+    <Property Name="Imagen" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservas">
+    <Key>
+      <PropertyRef Name="IdReserva" />
+    </Key>
+    <Property Name="FechaInicio" Type="date" Nullable="false" />
+    <Property Name="FechaFin" Type="date" />
+    <Property Name="IdCliente" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Matricula" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Modelo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IdReserva" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSede" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sedes">
+    <Key>
+      <PropertyRef Name="IdSede" />
+    </Key>
+    <Property Name="IdSede" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoCoche">
+    <Key>
+      <PropertyRef Name="IdTipoCoche" />
+    </Key>
+    <Property Name="IdTipoCoche" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreTipo" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoMotor">
+    <Key>
+      <PropertyRef Name="idMotor" />
+    </Key>
+    <Property Name="idMotor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreTipo" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Modelos_Marca">
+    <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+    <End Role="Modelos" Type="Self.Modelos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="idMarca" />
+      </Principal>
+      <Dependent Role="Modelos">
+        <PropertyRef Name="Marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Modelos_TipoCoche">
+    <End Role="TipoCoche" Type="Self.TipoCoche" Multiplicity="1" />
+    <End Role="Modelos" Type="Self.Modelos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoCoche">
+        <PropertyRef Name="IdTipoCoche" />
+      </Principal>
+      <Dependent Role="Modelos">
+        <PropertyRef Name="Tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Modelos_TipoMotor">
+    <End Role="TipoMotor" Type="Self.TipoMotor" Multiplicity="1" />
+    <End Role="Modelos" Type="Self.Modelos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoMotor">
+        <PropertyRef Name="idMotor" />
+      </Principal>
+      <Dependent Role="Modelos">
+        <PropertyRef Name="Motor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservas_Clientes">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+    <End Role="Reservas" Type="Self.Reservas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="Reservas">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservas_Modelos">
+    <End Role="Modelos" Type="Self.Modelos" Multiplicity="1" />
+    <End Role="Reservas" Type="Self.Reservas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelos">
+        <PropertyRef Name="IdModelos" />
+      </Principal>
+      <Dependent Role="Reservas">
+        <PropertyRef Name="Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservas_Sedes">
+    <End Role="Sedes" Type="Self.Sedes" Multiplicity="1" />
+    <End Role="Reservas" Type="Self.Reservas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sedes">
+        <PropertyRef Name="IdSede" />
+      </Principal>
+      <Dependent Role="Reservas">
+        <PropertyRef Name="IdSede" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OroCocheModelStoreContainer">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modelos" EntityType="Self.Modelos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservas" EntityType="Self.Reservas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sedes" EntityType="Self.Sedes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoCoche" EntityType="Self.TipoCoche" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoMotor" EntityType="Self.TipoMotor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Modelos_Marca" Association="Self.FK_Modelos_Marca">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Modelos" EntitySet="Modelos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Modelos_TipoCoche" Association="Self.FK_Modelos_TipoCoche">
+      <End Role="TipoCoche" EntitySet="TipoCoche" />
+      <End Role="Modelos" EntitySet="Modelos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Modelos_TipoMotor" Association="Self.FK_Modelos_TipoMotor">
+      <End Role="TipoMotor" EntitySet="TipoMotor" />
+      <End Role="Modelos" EntitySet="Modelos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservas_Clientes" Association="Self.FK_Reservas_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Reservas" EntitySet="Reservas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservas_Modelos" Association="Self.FK_Reservas_Modelos">
+      <End Role="Modelos" EntitySet="Modelos" />
+      <End Role="Reservas" EntitySet="Reservas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservas_Sedes" Association="Self.FK_Reservas_Sedes">
+      <End Role="Sedes" EntitySet="Sedes" />
+      <End Role="Reservas" EntitySet="Reservas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

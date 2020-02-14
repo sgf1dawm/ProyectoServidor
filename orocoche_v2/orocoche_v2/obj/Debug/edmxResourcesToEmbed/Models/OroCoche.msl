@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OroCocheModelStoreContainer" CdmEntityContainer="OroCocheEntities">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="OroCocheModel.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marca">
+      <EntityTypeMapping TypeName="OroCocheModel.Marca">
+        <MappingFragment StoreEntitySet="Marca">
+          <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+          <ScalarProperty Name="NombreMarca" ColumnName="NombreMarca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modelos">
+      <EntityTypeMapping TypeName="OroCocheModel.Modelos">
+        <MappingFragment StoreEntitySet="Modelos">
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="IdModelos" ColumnName="IdModelos" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Potencia" ColumnName="Potencia" />
+          <ScalarProperty Name="Peso" ColumnName="Peso" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="StockTotal" ColumnName="StockTotal" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Motor" ColumnName="Motor" />
+          <ScalarProperty Name="Premium" ColumnName="Premium" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservas">
+      <EntityTypeMapping TypeName="OroCocheModel.Reservas">
+        <MappingFragment StoreEntitySet="Reservas">
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="IdReserva" ColumnName="IdReserva" />
+          <ScalarProperty Name="IdSede" ColumnName="IdSede" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sedes">
+      <EntityTypeMapping TypeName="OroCocheModel.Sedes">
+        <MappingFragment StoreEntitySet="Sedes">
+          <ScalarProperty Name="IdSede" ColumnName="IdSede" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoCoche">
+      <EntityTypeMapping TypeName="OroCocheModel.TipoCoche">
+        <MappingFragment StoreEntitySet="TipoCoche">
+          <ScalarProperty Name="IdTipoCoche" ColumnName="IdTipoCoche" />
+          <ScalarProperty Name="NombreTipo" ColumnName="NombreTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoMotor">
+      <EntityTypeMapping TypeName="OroCocheModel.TipoMotor">
+        <MappingFragment StoreEntitySet="TipoMotor">
+          <ScalarProperty Name="idMotor" ColumnName="idMotor" />
+          <ScalarProperty Name="NombreTipo" ColumnName="NombreTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

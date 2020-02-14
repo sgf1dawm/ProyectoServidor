@@ -1,0 +1,26 @@
+﻿@model orocoche_v2.Models.TipoMotor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TipoMotor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreTipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreTipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idMotor }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

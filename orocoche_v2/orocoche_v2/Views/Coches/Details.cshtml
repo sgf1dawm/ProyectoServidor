@@ -1,0 +1,34 @@
+﻿@model orocoche_v2.Models.Coches
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Coches</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Matricula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Matricula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelos.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelos.Modelo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdCoche }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

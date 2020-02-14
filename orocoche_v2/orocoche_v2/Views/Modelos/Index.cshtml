@@ -1,0 +1,127 @@
+﻿@model IEnumerable<orocoche_v2.Models.Modelos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Modelos</h2>
+@if (User.IsInRole("Administrador"))
+{
+    <h4>
+        @Html.ActionLink("Crear un modelo nuevo", "Create")
+    </h4>
+}
+@if (Request.IsAuthenticated)
+{
+    <div class="container d-flex flex-wrap">
+        @foreach (var item in Model)
+        {
+            <div class="card mx-5 mt-3" style="width: 24rem; border: 1px solid black">
+                @*https://a.ccdn.es/cnet/2020/02/05/44775726/287674324_g.jpg*@
+                <img src="~/Content/Images/@Html.DisplayFor(modelItem => item.Imagen)" class="card-img-top" />
+                <div class="card-body h5 ml-3">
+                    <p>MODELO: @Html.DisplayFor(modelItem => item.Modelo)</p>
+                    <p>POTENCIA: @Html.DisplayFor(modelItem => item.Potencia)cv</p>
+                    <p>PESO: @Html.DisplayFor(modelItem => item.Peso)kg</p>
+                    <p>AÑO: @Html.DisplayFor(modelItem => item.Año)</p>
+                    <p>MARCA: @Html.DisplayFor(modelItem => item.Marca1.NombreMarca)</p>
+                    <p>CARROCERÍA: @Html.DisplayFor(modelItem => item.TipoCoche.NombreTipo)</p>
+                    <p>COMBUSTIBLE: @Html.DisplayFor(modelItem => item.TipoMotor.NombreTipo)</p>
+                    
+
+
+                    @if (item.Premium == false)
+                    {
+                        <p>PREMIUM: No</p>
+
+                    }
+                    else
+                    {
+                        <p>PREMIUM: Si</p>
+                    }
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <p>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.IdModelos }) |
+                            @Html.ActionLink("Detalles", "Details", new { id = item.IdModelos }) |
+                            @Html.ActionLink("Borrar", "Delete", new { id = item.IdModelos })
+                        </p>
+                    }
+                    @if (User.IsInRole("Usuario"))
+                    {
+                        @Html.ActionLink("Reserva este modelo!", "NuevaReserva", new { id = item.IdModelos })
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Potencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Peso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Año)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Premium)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca1.NombreMarca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoCoche.NombreTipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoMotor.NombreTipo)
+        </th>
+        <th></th>
+    </tr>*@
+@*<tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Potencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Peso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Año)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Premium)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca1.NombreMarca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoCoche.NombreTipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoMotor.NombreTipo)
+        </td>
+    </tr>*@
+
+

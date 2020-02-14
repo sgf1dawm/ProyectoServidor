@@ -1,0 +1,82 @@
+﻿@model orocoche_v2.Models.Modelos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Modelos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Potencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Potencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Peso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Año)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Año)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Premium)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Premium)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca1.NombreMarca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca1.NombreMarca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoCoche.NombreTipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCoche.NombreTipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoMotor.NombreTipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoMotor.NombreTipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdModelos }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

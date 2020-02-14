@@ -1,0 +1,54 @@
+﻿@model orocoche_v2.Models.Clientes
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mis Reservas</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            Fecha de Inicio
+        </th>
+        <th>
+            Fecha Fin
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Modelo
+        </th>
+        <th>
+            Sede
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Reservas)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelos.Marca1.NombreMarca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelos.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sedes.Direccion)
+            </td>
+
+        </tr>
+    }
+
+</table>
+

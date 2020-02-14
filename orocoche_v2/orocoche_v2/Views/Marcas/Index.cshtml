@@ -1,0 +1,33 @@
+﻿@model IEnumerable<orocoche_v2.Models.Marca>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreMarca)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreMarca)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idMarca }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idMarca }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.idMarca })
+        </td>
+    </tr>
+}
+
+</table>
