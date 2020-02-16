@@ -12,50 +12,63 @@
     </h4>
 }
 @if (Request.IsAuthenticated)
-{
-    <div class="container d-flex flex-wrap">
-        @foreach (var item in Model)
+{   
+        <p>
+        @* Para buscar por nombre de empleado en la lista de valores *@
+        @using (Html.BeginForm("Index", "Modelos", FormMethod.Get))
         {
-            <div class="card mx-5 mt-3" style="width: 24rem; border: 1px solid black">
-                @*https://a.ccdn.es/cnet/2020/02/05/44775726/287674324_g.jpg*@
-                <img src="~/Content/Images/@Html.DisplayFor(modelItem => item.Imagen)" class="card-img-top" />
-                <div class="card-body h5 ml-3">
-                    <p>MODELO: @Html.DisplayFor(modelItem => item.Modelo)</p>
-                    <p>POTENCIA: @Html.DisplayFor(modelItem => item.Potencia)cv</p>
-                    <p>PESO: @Html.DisplayFor(modelItem => item.Peso)kg</p>
-                    <p>AÑO: @Html.DisplayFor(modelItem => item.Año)</p>
-                    <p>MARCA: @Html.DisplayFor(modelItem => item.Marca1.NombreMarca)</p>
-                    <p>CARROCERÍA: @Html.DisplayFor(modelItem => item.TipoCoche.NombreTipo)</p>
-                    <p>COMBUSTIBLE: @Html.DisplayFor(modelItem => item.TipoMotor.NombreTipo)</p>
-                    
+        <p>
+            Marca: @Html.DropDownList("strMarca",
+            (IEnumerable<SelectListItem>)ViewBag.ListaMarca, "Todas")
+            Nombre del modelo: @Html.TextBox("strCadenaBusqueda")
+            <input type="submit" value="Buscar y/o filtrar" />
 
-
-                    @if (item.Premium == false)
-                    {
-                        <p>PREMIUM: No</p>
-
-                    }
-                    else
-                    {
-                        <p>PREMIUM: Si</p>
-                    }
-                    @if (User.IsInRole("Administrador"))
-                    {
-                        <p>
-                            @Html.ActionLink("Editar", "Edit", new { id = item.IdModelos }) |
-                            @Html.ActionLink("Detalles", "Details", new { id = item.IdModelos }) |
-                            @Html.ActionLink("Borrar", "Delete", new { id = item.IdModelos })
-                        </p>
-                    }
-                    @if (User.IsInRole("Usuario"))
-                    {
-                        @Html.ActionLink("Reserva este modelo!", "NuevaReserva", new { id = item.IdModelos })
-                    }
-                </div>
-            </div>
+        </p>
         }
-    </div>
-}
+        </p>
+        <div class="container d-flex flex-wrap">
+            @foreach (var item in Model)
+            {
+                <div class="card mx-5 mt-3" style="width: 24rem; border: 1px solid black">
+                    @*https://a.ccdn.es/cnet/2020/02/05/44775726/287674324_g.jpg*@
+                    <img src="~/Content/Images/@Html.DisplayFor(modelItem => item.Imagen)" class="card-img-top" />
+                    <div class="card-body h5 ml-3">
+                        <p>MARCA: @Html.DisplayFor(modelItem => item.Marca1.NombreMarca)</p>
+                        <p>MODELO: @Html.DisplayFor(modelItem => item.Modelo)</p>
+                        <p>AÑO: @Html.DisplayFor(modelItem => item.Año)</p>
+                        <p>POTENCIA: @Html.DisplayFor(modelItem => item.Potencia)cv</p>
+                        <p>PESO: @Html.DisplayFor(modelItem => item.Peso)kg</p>
+                        <p>CARROCERÍA: @Html.DisplayFor(modelItem => item.TipoCoche.NombreTipo)</p>
+                        <p>COMBUSTIBLE: @Html.DisplayFor(modelItem => item.TipoMotor.NombreTipo)</p>
+
+
+
+                        @if (item.Premium == false)
+                        {
+                            <p>PREMIUM: No</p>
+
+                        }
+                        else
+                        {
+                            <p>PREMIUM: Si</p>
+                        }
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <p>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.IdModelos }) |
+                                @Html.ActionLink("Detalles", "Details", new { id = item.IdModelos }) |
+                                @Html.ActionLink("Borrar", "Delete", new { id = item.IdModelos })
+                            </p>
+                        }
+                        @if (User.IsInRole("Usuario"))
+                        {
+                            @Html.ActionLink("Reserva este modelo!", "NuevaReserva", new { id = item.IdModelos })
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

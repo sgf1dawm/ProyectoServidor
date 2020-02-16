@@ -17,9 +17,32 @@ namespace orocoche_v2.Controllers
         private OroCocheEntities db = new OroCocheEntities();
 
         // GET: Modelos
-        public ActionResult Index()
+        public ActionResult Index(string strMarca, string strCadenaBusqueda)
         {
             var modelos = db.Modelos.Include(m => m.Marca1).Include(m => m.TipoCoche).Include(m => m.TipoMotor);
+
+            // Para presentar los tipos de avería en la vista
+            var lstMarca = new List<string>();
+            var qryMarca = from d in db.Marca
+                                orderby d.NombreMarca
+                                select d.NombreMarca;
+            lstMarca.AddRange(qryMarca.Distinct());
+            ViewBag.ListaMarca = new SelectList(lstMarca);
+
+            // Para buscar avisos por nombre de empleado en la lista de valores
+            if (!String.IsNullOrEmpty(strCadenaBusqueda))
+            {
+                modelos = modelos.Where(s => s.Modelo.Contains(strCadenaBusqueda));
+            }
+
+            // Para presentar los avisos filtrados por tipo de avería
+            if (!string.IsNullOrEmpty(strMarca))
+            {
+                modelos = modelos.Where(x => x.Marca1.NombreMarca == strMarca);
+            }
+
+
+
             return View(modelos.ToList());
         }
 
@@ -116,7 +139,7 @@ namespace orocoche_v2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdModelos,Marca,Modelo,Potencia,Peso,Año,Tipo,Motor,Premium")] Modelos modelos)
+        public ActionResult Edit([Bind(Include = "IdModelos,Marca,Modelo,Potencia,Peso,Año,Tipo,Motor,Premium,Imagen")] Modelos modelos)
         {
             if (ModelState.IsValid)
             {
