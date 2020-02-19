@@ -20,15 +20,15 @@ namespace orocoche_v2.Models
         {
             this.Reservas = new HashSet<Reservas>();
         }
-
+        [DisplayFormat(DataFormatString = "{0:0}", ApplyFormatInEditMode = true)]
         public decimal IdModelos { get; set; }
         public int Marca { get; set; }
         public string Modelo { get; set; }
-        [DisplayFormat(DataFormatString = "{0:0}")]
+        [DisplayFormat(DataFormatString = "{0:0}", ApplyFormatInEditMode = true)]
         public decimal Potencia { get; set; }
-        [DisplayFormat(DataFormatString = "{0:0}")]
+        [DisplayFormat(DataFormatString = "{0:0}", ApplyFormatInEditMode = true)]
         public Nullable<decimal> Peso { get; set; }
-        [DisplayFormat(DataFormatString = "{0:0}")]
+        [DisplayFormat(DataFormatString = "{0:0}", ApplyFormatInEditMode = true)]
         public decimal Año { get; set; }
         public decimal StockTotal { get; set; }
         public int Tipo { get; set; }

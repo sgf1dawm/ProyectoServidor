@@ -11,17 +11,20 @@ namespace orocoche_v2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Reservas
     {
+        [DataType(DataType.Date)]
         public System.DateTime FechaInicio { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> FechaFin { get; set; }
         public decimal IdCliente { get; set; }
         public decimal Matricula { get; set; }
         public decimal Modelo { get; set; }
         public decimal IdReserva { get; set; }
         public decimal IdSede { get; set; }
-    
+
         public virtual Clientes Clientes { get; set; }
         public virtual Modelos Modelos { get; set; }
         public virtual Sedes Sedes { get; set; }

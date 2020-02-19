@@ -46,7 +46,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Sedes.Direccion)
             </td>
-
+            <td>
+                @Html.ActionLink("Cancelar Reserva", "Delete", new { id = item.IdReserva })
+            </td>
         </tr>
     }
 

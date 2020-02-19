@@ -12,23 +12,41 @@
     </h4>
 }
 @if (Request.IsAuthenticated)
-{   
-        <p>
-        @* Para buscar por nombre de empleado en la lista de valores *@
-        @using (Html.BeginForm("Index", "Modelos", FormMethod.Get))
-        {
-        <p>
-            Marca: @Html.DropDownList("strMarca",
-            (IEnumerable<SelectListItem>)ViewBag.ListaMarca, "Todas")
-            Nombre del modelo: @Html.TextBox("strCadenaBusqueda")
-            <input type="submit" value="Buscar y/o filtrar" />
+{
+    <div class="row">
+        <div id="left" class="col-2">
+            <p >
+                @* Para buscar por nombre de empleado en la lista de valores *@
+                @using (Html.BeginForm("Index", "Modelos", FormMethod.Get))
+                {
+            <p style="margin-bottom:20px;">
+                Marca: @Html.DropDownList("strMarca",
+(IEnumerable<SelectListItem>)ViewBag.ListaMarca, "Todas")
+            </p>
+            <p style="margin-bottom:20px;">
+                Carroceria: @Html.DropDownList("strTipo",
+(IEnumerable<SelectListItem>)ViewBag.ListaTipo, "Todas")
+            </p>
+            <p style="margin-bottom:20px;">
+                Motor: <br /> @Html.DropDownList("strMotor",
+(IEnumerable<SelectListItem>)ViewBag.ListaMotor, "Todas")
+            </p>
+                <p style="margin-bottom:20px;">
+                    Nombre del modelo: @Html.TextBox("strCadenaBusqueda")
+                    <input type="submit" value="Buscar y/o filtrar" />
 
-        </p>
-        }
-        </p>
-        <div class="container d-flex flex-wrap">
+                </p>
+
+                }
+                </p>
+            </div>
+
+        <div class="container d-flex flex-wrap col-10">
+
             @foreach (var item in Model)
             {
+
+
                 <div class="card mx-5 mt-3" style="width: 24rem; border: 1px solid black">
                     @*https://a.ccdn.es/cnet/2020/02/05/44775726/287674324_g.jpg*@
                     <img src="~/Content/Images/@Html.DisplayFor(modelItem => item.Imagen)" class="card-img-top" />
@@ -56,19 +74,22 @@
                         {
                             <p>
                                 @Html.ActionLink("Editar", "Edit", new { id = item.IdModelos }) |
-                                @Html.ActionLink("Detalles", "Details", new { id = item.IdModelos }) |
                                 @Html.ActionLink("Borrar", "Delete", new { id = item.IdModelos })
                             </p>
                         }
                         @if (User.IsInRole("Usuario"))
                         {
-                            @Html.ActionLink("Reserva este modelo!", "NuevaReserva", new { id = item.IdModelos })
+                            <a href="../../Reservas/Create/@Html.DisplayFor(modelItem => item.IdModelos)">Reservar</a>
+                            @*@Html.ActionLink("Reserva este modelo!", "NuevaReserva", new { id = item.IdModelos })*@
                         }
                     </div>
                 </div>
+
             }
         </div>
-    }
+
+    </div>
+        }
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

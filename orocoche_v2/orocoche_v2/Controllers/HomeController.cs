@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace orocoche_v2.Controllers
 {
+    [Authorize(Roles = "Administrador,Usuario")]
     public class HomeController : Controller
     {
         private OroCocheEntities db = new OroCocheEntities();

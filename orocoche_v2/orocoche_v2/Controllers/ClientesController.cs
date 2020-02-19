@@ -11,11 +11,11 @@ using orocoche_v2.Models;
 
 namespace orocoche_v2.Controllers
 {
-
+    [Authorize(Roles = "Administrador")]
     public class ClientesController : Controller
     {
         private OroCocheEntities db = new OroCocheEntities();
-        [Authorize(Roles = "Administrador")]
+
         // GET: Clientes
         public ActionResult Index()
         {
