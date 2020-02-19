@@ -1,6 +1,5 @@
 Darle estilo a crear reservas
 En clientes poder darle rol UsuarioPremium
-Fijarse bien todos los authorize
 Intentar arreglar un poquito la estetica
 Meter mas coches (Paginacion)
 Tratar de hacer algo con las sedes, buscarse una api o algo

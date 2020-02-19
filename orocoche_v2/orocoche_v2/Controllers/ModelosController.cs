@@ -11,7 +11,7 @@ using orocoche_v2.Models;
 
 namespace orocoche_v2.Controllers
 {
-
+    [Authorize(Roles = "Administrador,Usuario,UsuarioPremium")]
     public class ModelosController : Controller
     {
 

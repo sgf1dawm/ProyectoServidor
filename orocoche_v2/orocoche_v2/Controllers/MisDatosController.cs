@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace orocoche_v2.Controllers
 {
-    [Authorize(Roles = "Usuario")]
+    [Authorize(Roles = "Usuario,UsuarioPremium")]
     public class MisDatosController : Controller
     {
         private OroCocheEntities db = new OroCocheEntities();

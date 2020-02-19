@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
-            <div class="card mx-5 mt-3" style="width: 20%; border: 1px solid black;">
+            <div class="card mx-5 mt-3 cols-4" style="width: 20%; border: 1px solid black;">
                 <img src="~/Content/Images/@ViewBag.Imagen" class="card-img-top" />
                 <div class="card-body h5 ml-3">
                     <p>MARCA: @ViewBag.Marca</p>
@@ -24,24 +24,24 @@
                     <p>AÑO: @ViewBag.Año</p>
                 </div>
             </div>
-            <div>
+            <div class="col-4 ml-5">
                 <div class="form-group">
-                    Fecha Inicio
-                    <div class="col-md-10" id="fechaIni" onchange="">
+                    Fecha Inicio:
+                    
                         @*@Html.JQueryUI().DatepickerFor(model => model.FechaInicio).ShowButtonPanel(true).ChangeYear(true).ChangeMonth(true).MinDate(0)*@
                         @Html.EditorFor(model => model.FechaInicio, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
-                    </div>
+                    
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.FechaFin, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10" id="fechaFin">
+                    Fecha Fin:
+                    
                         @*@Html.JQueryUI().DatepickerFor(model => model.FechaFin).ShowButtonPanel(true).ChangeYear(true).ChangeMonth(true).MinDate(0)*@
 
                         @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
-                    </div>
+                    
                 </div>
 
                 <div class="form-group" style="display:none">
@@ -53,7 +53,7 @@
                 </div>
 
 
-                <div class="form-group" style="display:inline">
+                <div class="form-group" style="display:none">
                     @Html.LabelFor(model => model.Modelo, "Modelo", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("Modelo", null, htmlAttributes: new { @class = "form-control" })
@@ -62,17 +62,19 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.IdSede, "IdSede", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    Sede:
+                    
                         @Html.DropDownList("IdSede", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.IdSede, "", new { @class = "text-danger" })
-                    </div>
+                    
                 </div>
             </div>
-
-            <div class="form-group" style="clear:both">
+            <div class="col-4 text-center">
+                <h2>Gracias<br /><br />por confiar<br /><br />en nosotros</h2>
+            </div>
+            <div class="form-group col-12 text-center">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Confirmar Reserva" class="btn btn-default" />
                 </div>
             </div>
         </div>
@@ -80,7 +82,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>
 
 @section Scripts {

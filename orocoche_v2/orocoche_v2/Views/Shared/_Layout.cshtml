@@ -8,14 +8,15 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/themes/base/css")
 
 
 </head>
-<body style="background-color:#F0F7EE">
+<body >
     <div class="container-fluid">
 
         @*<div class="navbar navbar-inverse navbar-fixed-top">*@
@@ -35,7 +36,7 @@
 
                 if (User.IsInRole("Usuario"))
                 {
-                    <ul class="nav nav-pills nav-fill h4 py-4" style="background-color:#FFE630;">
+                    <ul class="nav nav-pills nav-fill h4 py-4">
                         <li class="nav-item">
                             @Html.ActionLink("Inicio", "Index", "Home")
                         </li>
@@ -48,7 +49,7 @@
                 }
                 if (User.IsInRole("Administrador"))
                 {
-                    <ul class="nav nav-pills nav-fill h4 py-4" style="background-color:#FFE630;">
+                    <ul class="nav nav-pills nav-fill h4 py-4">
                         <li class="nav-item">
                             @Html.ActionLink("Inicio", "Index", "Home")
                         </li>
@@ -62,7 +63,7 @@
             }
             else
             {
-                <ul class="nav nav-pills nav-fill h4 py-4" style="background-color:#FFE630;">
+                <ul class="nav nav-pills nav-fill h4 py-4">
                     <li class="nav-item">
                         @Html.ActionLink("Inicio", "Index", "Home")
                     </li>

@@ -12,7 +12,7 @@ using orocoche_v2.Models;
 
 namespace orocoche_v2.Controllers
 {
-    [Authorize]
+
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

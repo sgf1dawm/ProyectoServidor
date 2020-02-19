@@ -11,7 +11,8 @@ namespace orocoche_v2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Clientes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,14 @@ namespace orocoche_v2.Models
         {
             this.Reservas = new HashSet<Reservas>();
         }
-    
+
         public string Nombre { get; set; }
         public string Email { get; set; }
         public string DNI { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
         public decimal IdCliente { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservas> Reservas { get; set; }
     }

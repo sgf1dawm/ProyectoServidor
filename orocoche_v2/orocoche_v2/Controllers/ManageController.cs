@@ -10,7 +10,7 @@ using orocoche_v2.Models;
 
 namespace orocoche_v2.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -32,9 +32,9 @@ namespace orocoche_v2.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -333,7 +333,7 @@ namespace orocoche_v2.Controllers
             base.Dispose(disposing);
         }
 
-#region Aplicaciones auxiliares
+        #region Aplicaciones auxiliares
         // Se usan para protección XSRF al agregar inicios de sesión externos
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +384,6 @@ namespace orocoche_v2.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

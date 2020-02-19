@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -32,7 +32,6 @@
             @if (User.IsInRole("Administrador")){
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.IdSede }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.IdSede }) |
                 @Html.ActionLink("Borrar", "Delete", new { id = item.IdSede })
             </td>
             }

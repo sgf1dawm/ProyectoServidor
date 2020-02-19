@@ -7,7 +7,7 @@
 <h2>Mis Reservas</h2>
 
 @*<p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Crear Nuevo", "Create")
     </p>*@
 <table class="table">
     <tr>
@@ -30,26 +30,26 @@
 
     @foreach (var item in Model.Reservas)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaFin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modelos.Marca1.NombreMarca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modelos.Modelo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sedes.Direccion)
-            </td>
-            <td>
-                @Html.ActionLink("Cancelar Reserva", "Delete", new { id = item.IdReserva })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaFin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelos.Marca1.NombreMarca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelos.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sedes.Direccion)
+        </td>
+        <td>
+            @Html.ActionLink("Cancelar Reserva", "Delete", new { id = item.IdReserva })
+        </td>
+    </tr>
     }
 
 </table>
