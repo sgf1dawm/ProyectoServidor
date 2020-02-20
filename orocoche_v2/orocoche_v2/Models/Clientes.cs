@@ -27,6 +27,7 @@ namespace orocoche_v2.Models
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
         public decimal IdCliente { get; set; }
+        public bool Premium { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservas> Reservas { get; set; }

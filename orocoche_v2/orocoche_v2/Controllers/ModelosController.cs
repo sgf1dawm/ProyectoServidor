@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using orocoche_v2.Models;
 
 namespace orocoche_v2.Controllers
@@ -20,6 +21,12 @@ namespace orocoche_v2.Controllers
         // GET: Modelos
         public ActionResult Index(string strTipo, string strMotor, string strMarca, string strCadenaBusqueda)
         {
+            var emailCliente = User.Identity.GetUserName();
+            Clientes cli = db.Clientes.Where(a => a.Email == emailCliente).FirstOrDefault();
+
+
+
+
             var modelos = db.Modelos.Include(m => m.Marca1).Include(m => m.TipoCoche).Include(m => m.TipoMotor);
 
             // Para presentar los tipos de avería en la vista
@@ -65,7 +72,8 @@ namespace orocoche_v2.Controllers
             {
                 modelos = modelos.Where(x => x.TipoMotor.NombreTipo == strMotor);
             }
-            if (User.IsInRole("Usuario"))
+            
+            if (cli != null && cli.Premium == false)
             {
                 modelos = modelos.Where(x => x.Premium == false);
             }

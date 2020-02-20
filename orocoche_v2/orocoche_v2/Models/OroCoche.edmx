@@ -14,6 +14,7 @@
           <Property Name="DNI" Type="nvarchar" MaxLength="50" />
           <Property Name="FechaNacimiento" Type="date" />
           <Property Name="IdCliente" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Premium" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Marca">
           <Key>
@@ -191,6 +192,7 @@
           <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
           <Property Name="IdCliente" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Reservas" Relationship="Self.FK_Reservas_Clientes" FromRole="Clientes" ToRole="Reservas" />
+          <Property Name="Premium" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Marca">
           <Key>
@@ -374,6 +376,7 @@
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="OroCocheModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="Premium" ColumnName="Premium" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DNI" ColumnName="DNI" />

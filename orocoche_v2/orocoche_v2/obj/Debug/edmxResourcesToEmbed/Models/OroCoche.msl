@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Clientes">
       <EntityTypeMapping TypeName="OroCocheModel.Clientes">
         <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Premium" ColumnName="Premium" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="DNI" ColumnName="DNI" />

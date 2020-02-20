@@ -6,9 +6,9 @@
 
 <h2>Lista de clientes</h2>
 
-<p>
+<h4>
     @Html.ActionLink("Crear Nuevo", "Create")
-</p>
+</h4>
 <table class="table">
     <tr>
         <th>
@@ -42,8 +42,15 @@
                 @Html.DisplayFor(modelItem => item.FechaNacimiento)
             </td>
             <td>
-                @Html.ActionLink("Borrar", "Delete", new { id = item.IdCliente })
-                @Html.ActionLink("Convertirlo a Premium", "Convertir", new { id = item.IdCliente })
+                @Html.ActionLink("Borrar", "Delete", new { id = item.IdCliente }) |
+                @if (item.Premium == false)
+                {
+                    @Html.ActionLink("Convertirlo a Premium", "Convertir", new { id = item.IdCliente })
+                }
+                else
+                {
+                    @Html.ActionLink("Quitar acceso Premium", "Convertir", new { id = item.IdCliente })
+                }
             </td>
         </tr>
     }

@@ -41,6 +41,5 @@ namespace orocoche_v2.Models
         public virtual TipoMotor TipoMotor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservas> Reservas { get; set; }
-
     }
 }

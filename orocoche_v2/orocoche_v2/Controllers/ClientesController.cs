@@ -22,20 +22,6 @@ namespace orocoche_v2.Controllers
         {
             return View(db.Clientes.ToList());
         }
-        //[Authorize(Roles = "Administrador")]
-        //public ActionResult Details(decimal id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Clientes clientes = db.Clientes.Find(id);
-        //    if (clientes == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(clientes);
-        //}
 
         // GET: Clientes/Details/5
         [Authorize(Roles = "Usuario, Administrador")]
@@ -61,20 +47,23 @@ namespace orocoche_v2.Controllers
 
         public ActionResult Convertir(decimal id)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-            var roleManager =
-            new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var userManager =
-            new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            Clientes cliente = db.Clientes.Find(id);
-            User usuario =
 
-            if (cliente.IsInRole("Usuario"))
+            Clientes cliente = db.Clientes.Find(id);
+
+            if (cliente.Premium == false)
             {
-                userManager.AddToRole(id.ToString(), "UsuarioPremium");
+                cliente.Premium = true;
+
             }
 
+            else
+            {
+                cliente.Premium = false;
+            }
+            db.Entry(cliente).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index", "Clientes");
+
         }
 
         // POST: Clientes/Create
