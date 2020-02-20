@@ -48,7 +48,7 @@ namespace orocoche_v2
             if (!roleManager.RoleExists("UsuarioPremium"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Usuario Premium";
+                role.Name = "UsuarioPremium";
                 roleManager.Create(role);
             }
 

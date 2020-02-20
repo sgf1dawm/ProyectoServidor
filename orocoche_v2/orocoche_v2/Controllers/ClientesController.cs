@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using orocoche_v2.Models;
 
 namespace orocoche_v2.Controllers
@@ -56,6 +57,24 @@ namespace orocoche_v2.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+        public ActionResult Convertir(decimal id)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var roleManager =
+            new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager =
+            new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            Clientes cliente = db.Clientes.Find(id);
+            User usuario =
+
+            if (cliente.IsInRole("Usuario"))
+            {
+                userManager.AddToRole(id.ToString(), "UsuarioPremium");
+            }
+
+            return RedirectToAction("Index", "Clientes");
         }
 
         // POST: Clientes/Create

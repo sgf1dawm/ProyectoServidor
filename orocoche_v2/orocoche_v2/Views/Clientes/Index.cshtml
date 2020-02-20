@@ -43,6 +43,7 @@
             </td>
             <td>
                 @Html.ActionLink("Borrar", "Delete", new { id = item.IdCliente })
+                @Html.ActionLink("Convertirlo a Premium", "Convertir", new { id = item.IdCliente })
             </td>
         </tr>
     }
