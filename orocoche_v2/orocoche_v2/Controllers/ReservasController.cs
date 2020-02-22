@@ -45,7 +45,7 @@ namespace orocoche_v2.Controllers
             }
             return View(reservas);
         }
-        [Authorize(Roles = "Administrador,Usuario,UsuarioPremium")]
+        [Authorize(Roles = "Usuario,UsuarioPremium")]
         // GET: Reservas/Create
         public ActionResult Create(int? id)
         {

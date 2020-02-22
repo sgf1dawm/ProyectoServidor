@@ -1,0 +1,3 @@
+Administrador: admin@empresa.com    admin123
+Usuario premium: premium@empresa.com	premiumpremium0
+Usuario normal: normal@empresa.com	normalnormal0

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using orocoche_v2.Models;
+using PagedList;
 
 namespace orocoche_v2.Controllers
 {
@@ -19,21 +20,56 @@ namespace orocoche_v2.Controllers
         private OroCocheEntities db = new OroCocheEntities();
 
         // GET: Modelos
-        public ActionResult Index(string strTipo, string strMotor, string strMarca, string strCadenaBusqueda)
+        public ActionResult Index(string strTipo, string strMotor, string strMarca, string strCadenaBusqueda, string strBusquedaActual, string strFiltroActual, int? page)
         {
+            
+            if (strCadenaBusqueda != null) {
+                page = 1;
+            }
+            else {
+                strCadenaBusqueda = strBusquedaActual;
+            }
+            ViewBag.BusquedaActual = strCadenaBusqueda;
+
+            if (strTipo != null) {
+                page = 1;
+            }
+            else {
+                strTipo = strFiltroActual;
+            }
+            ViewBag.FiltroActual = strTipo;
+
+            if (strMotor != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                strMotor = strFiltroActual;
+            }
+            ViewBag.FiltroActual = strMotor;
+
+            if (strMarca != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                strMarca = strFiltroActual;
+            }
+            ViewBag.FiltroActual = strMarca;
+
             var emailCliente = User.Identity.GetUserName();
             Clientes cli = db.Clientes.Where(a => a.Email == emailCliente).FirstOrDefault();
 
-
-
-
             var modelos = db.Modelos.Include(m => m.Marca1).Include(m => m.TipoCoche).Include(m => m.TipoMotor);
-
+            modelos = modelos.OrderByDescending(s => s.Premium);
             // Para presentar los tipos de avería en la vista
             var lstMarca = new List<string>();
             var qryMarca = from d in db.Marca
                            orderby d.NombreMarca
                            select d.NombreMarca;
+            lstMarca.Add("Todas");
             lstMarca.AddRange(qryMarca.Distinct());
             ViewBag.ListaMarca = new SelectList(lstMarca);
 
@@ -41,6 +77,7 @@ namespace orocoche_v2.Controllers
             var qrytipo = from d in db.TipoCoche
                           orderby d.NombreTipo
                           select d.NombreTipo;
+            lstTipo.Add("Todas");
             lstTipo.AddRange(qrytipo.Distinct());
             ViewBag.ListaTipo = new SelectList(lstTipo);
 
@@ -48,6 +85,7 @@ namespace orocoche_v2.Controllers
             var qryMotor = from d in db.TipoMotor
                            orderby d.NombreTipo
                            select d.NombreTipo;
+            lstMotor.Add("Todas");
             lstMotor.AddRange(qryMotor.Distinct());
             ViewBag.ListaMotor = new SelectList(lstMotor);
 
@@ -60,26 +98,36 @@ namespace orocoche_v2.Controllers
             // Para presentar los avisos filtrados por tipo de avería
             if (!string.IsNullOrEmpty(strMarca))
             {
-                modelos = modelos.Where(x => x.Marca1.NombreMarca == strMarca);
+                if (strMarca != "Todas")
+                {
+                    modelos = modelos.Where(x => x.Marca1.NombreMarca == strMarca);
+                }
             }
 
             if (!string.IsNullOrEmpty(strTipo))
             {
-                modelos = modelos.Where(x => x.TipoCoche.NombreTipo == strTipo);
+                if (strTipo != "Todas")
+                {
+                    modelos = modelos.Where(x => x.TipoCoche.NombreTipo == strTipo);
+                }
             }
 
             if (!string.IsNullOrEmpty(strMotor))
             {
-                modelos = modelos.Where(x => x.TipoMotor.NombreTipo == strMotor);
+                if (strMotor != "Todas")
+                {
+                    modelos = modelos.Where(x => x.TipoMotor.NombreTipo == strMotor);
+                }
             }
-            
+
             if (cli != null && cli.Premium == false)
             {
-                modelos = modelos.Where(x => x.Premium == false);
+               modelos = modelos.Where(x => x.Premium == false);                
             }
 
-
-            return View(modelos.ToList());
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(modelos.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Modelos/Details/5

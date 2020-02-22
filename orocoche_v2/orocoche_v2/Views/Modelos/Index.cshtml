@@ -1,4 +1,7 @@
-﻿@model IEnumerable<orocoche_v2.Models.Modelos>
+﻿@*@model IEnumerable<orocoche_v2.Models.Modelos>*@
+@model PagedList.IPagedList<orocoche_v2.Models.Modelos>
+@using PagedList.Mvc;
+<link href = "~/Content/PagedList.css" rel = "stylesheet" type = "text/css"/>
 
 @{
     ViewBag.Title = "Index";
@@ -15,24 +18,29 @@
 {
     <div class="row">
         <div id="left" class="col-2">
+
+            @*Tipo de Avería: @Html.DropDownList("strTipoAveria", (IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string)             
+            Nombre del empleado: @Html.TextBox("strCadenaBusqueda", ViewBag.BusquedaActual as string)*@
+
+
             <p>
                 @* Para buscar por nombre de empleado en la lista de valores *@
                 @using (Html.BeginForm("Index", "Modelos", FormMethod.Get))
                 {
                 <p style="margin-bottom:20px;">
                     Marca: @Html.DropDownList("strMarca",
-(IEnumerable<SelectListItem>)ViewBag.ListaMarca, "Todas")
+(IEnumerable<SelectListItem>)ViewBag.ListaMarca, ViewBag.FiltroActual as string)
                 </p>
                 <p style="margin-bottom:20px;">
                     Carroceria: @Html.DropDownList("strTipo",
-(IEnumerable<SelectListItem>)ViewBag.ListaTipo, "Todas")
+(IEnumerable<SelectListItem>)ViewBag.ListaTipo, ViewBag.FiltroActual as string)
                 </p>
                 <p style="margin-bottom:20px;">
                     Motor: <br /> @Html.DropDownList("strMotor",
-(IEnumerable<SelectListItem>)ViewBag.ListaMotor, "Todas")
+(IEnumerable<SelectListItem>)ViewBag.ListaMotor, ViewBag.FiltroActual as string)
                 </p>
                 <p style="margin-bottom:20px;">
-                    Nombre del modelo: @Html.TextBox("strCadenaBusqueda")
+                    Nombre del modelo: @Html.TextBox("strCadenaBusqueda", ViewBag.BusquedaActual as string)
                     <input type="submit" value="Buscar y/o filtrar" />
 
                 </p>
@@ -86,6 +94,14 @@
         </div>
     }
 
+<br />
+
+@* Se muestra el número de páginas y el total de páginas *@ 
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@* Se muestran los botones de paginación mediante el helper PagedListPager *@ 
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, strBusquedaActual = ViewBag.BusquedaActual, strFiltroActual = ViewBag.FiltroActual }))
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
@@ -96,61 +112,5 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
-
-
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Modelo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Potencia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Peso)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Año)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Premium)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Marca1.NombreMarca)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoCoche.NombreTipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoMotor.NombreTipo)
-        </th>
-        <th></th>
-    </tr>*@
-@*<tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modelo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Potencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Peso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Año)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Premium)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marca1.NombreMarca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoCoche.NombreTipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoMotor.NombreTipo)
-        </td>
-    </tr>*@
 
 
